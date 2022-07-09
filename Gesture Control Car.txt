@@ -1,0 +1,50 @@
+int xPin =A3;  // X axis input
+int yPin =A3;  // Y axis input
+int zPin =A3;  // Z axis input
+
+int D1=10, D2=11, D3=12, D4=13;  //output pins connected to 10,11,12,13
+long x;  //veriable for storing X coordinates
+long y;  //veriable for storing Y coordinates
+long z;  //veriable for storing Z coordinates
+
+void setup()
+{
+ Serial.begin(9600);
+ pinMode(19,OUTPUT);
+ pinMode(18,OUTPUT);
+ digtalWrite(19,HIGH);
+ digtalWrite(18,LOW);
+ pinMode(D1,OUTPUT);
+ pinMode(D2,OUTPUT);
+ pinMode(D3,OUTPUT);
+ pinMode(D4,OUTPUT);
+}
+
+void loop()
+{
+ x = analogRead(xPin);  //Reads X coordinates
+ y = analogRead(yPin);  //Reads Y coordinates
+ z = analogRead(zPin);  //Reads Z coordinates
+ Serial.print("x= ");
+ Serial.print(x);
+ Serial.print("y= ");
+ Serial.print(y);
+ Serial.print("z= ");
+ Serial.print(z);
+
+if(x<300)  //change the value for adjusting sensitivity
+forword();
+else if(x>350)  //change the value for adjusting sensitivity
+backword();
+else if(y<300)  //change the value for adjusting sensitivity
+left();
+if(y>350)  //change the value for adjusting sensitivity
+right();
+else
+stop_();
+}
+
+void stop_()
+{
+Serial.println("");
+}
